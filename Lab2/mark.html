@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toyota Mark II - Собери свою мечту</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e10e17;
+            --primary-dark: #8b0000;
+            --secondary: #2c3e50;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(225, 14, 23, 0.5);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Layout */
+        .builder-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Car Display */
+        .car-display {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .car-image-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .car-base {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: #34495e;
+            border-radius: 20px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .car-part {
+            position: absolute;
+            transition: all 0.3s ease;
+        }
+
+        .car-body {
+            width: 80%;
+            height: 120px;
+            background: var(--car-color, #e10e17);
+            border-radius: 15px 15px 5px 5px;
+            top: 100px;
+            left: 10%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .car-wheels {
+            width: 60px;
+            height: 60px;
+            background: #2c3e50;
+            border-radius: 50%;
+            border: 5px solid #1a252f;
+            top: 150px;
+        }
+
+        .wheel-front { left: 20%; }
+        .wheel-rear { right: 20%; }
+
+        .car-windows {
+            width: 70%;
+            height: 50px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 10px 10px 0 0;
+            top: 105px;
+            left: 15%;
+        }
+
+        .car-lights {
+            width: 30px;
+            height: 15px;
+            background: #f1c40f;
+            border-radius: 5px;
+            top: 130px;
+        }
+
+        .light-front { left: 8%; }
+        .light-rear { right: 8%; background: var(--primary); }
+
+        /* Customization Panel */
+        .customization-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .panel-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .panel-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 1.2rem;
+        }
+
+        /* Options Grid */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .option-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .option-item.active {
+            border-color: var(--accent);
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .option-price {
+            font-size: 0.9rem;
+            color: var(--success);
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Color Picker */
+        .color-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-option.active {
+            border-color: var(--light);
+            transform: scale(1.1);
+        }
+
+        /* Slider */
+        .slider-container {
+            margin: 15px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Summary */
+        .summary {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--success);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Generation Selector */
+        .generation-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .gen-btn {
+            flex: 1;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .gen-btn.active {
+            border-color: var(--accent);
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .builder-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .customization-panel {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes carAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .car-base {
+            animation: carAppear 0.8s ease-out;
+        }
+
+        /* Performance Meter */
+        .performance-meter {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .meter {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .meter-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 10px 0;
+        }
+
+        .meter-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Car Visualization Styles */
+        .car-visualization {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            margin: 40px auto;
+            perspective: 1000px;
+        }
+
+        .car-body {
+            position: absolute;
+            width: 300px;
+            height: 80px;
+            background: var(--car-color, #e10e17);
+            border-radius: 15px 15px 5px 5px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Передняя часть */
+        .car-front {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            top: -10px;
+            background: inherit;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .headlights {
+            position: absolute;
+            width: 100%;
+            top: 5px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .headlight {
+            width: 12px;
+            height: 8px;
+            background: #f1c40f;
+            border-radius: 3px;
+        }
+
+        .grille {
+            position: absolute;
+            width: 80px;
+            height: 5px;
+            background: #2c3e50;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Окна */
+        .car-windows {
+            position: absolute;
+            width: 90%;
+            height: 30px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            top: 10px;
+            left: 5%;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .windshield {
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            background: inherit;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .side-windows {
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            top: 15px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .window {
+            width: 45%;
+            height: 100%;
+            background: inherit;
+        }
+
+        .window.front {
+            border-radius: 0 0 0 5px;
+        }
+
+        .window.rear {
+            border-radius: 0 0 5px 0;
+        }
+
+        .rear-window {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            top: 30px;
+            background: inherit;
+            border-radius: 0 0 5px 5px;
+        }
+
+        /* Задняя часть */
+        .car-rear {
+            position: absolute;
+            width: 100%;
+            height: 15px;
+            bottom: -10px;
+            background: inherit;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .taillights {
+            position: absolute;
+            width: 100%;
+            bottom: 3px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .taillight {
+            width: 15px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Колеса */
+        .car-wheels {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .wheel {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: #2c3e50;
+            border: 5px solid #1a252f;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .wheel.front-left {
+            top: 55px;
+            left: 30px;
+        }
+
+        .wheel.front-right {
+            top: 55px;
+            right: 30px;
+        }
+
+        .wheel.rear-left {
+            top: 55px;
+            left: 210px;
+        }
+
+        .wheel.rear-right {
+            top: 55px;
+            right: 210px;
+        }
+
+        /* Different wheel styles */
+        .wheel[data-style="sport"] {
+            background: #e74c3c;
+            border-color: #c0392b;
+        }
+
+        .wheel[data-style="jdm"] {
+            background: #f39c12;
+            border-color: #d35400;
+        }
+
+        .wheel[data-style="vip"] {
+            background: #9b59b6;
+            border-color: #8e44ad;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-car"></i>
+            </div>
+            <h1>Toyota Mark II Dream Builder</h1>
+            <p class="subtitle">Собери свой идеальный Mark II. Выбирай поколение, тюнинг и стиль!</p>
+        </header>
+
+        <!-- Generation Selector -->
+        <div class="generation-selector">
+            <div class="gen-btn active" data-gen="x30">X30 (1gen)</div>
+            <div class="gen-btn" data-gen="x70">X70 (4gen)</div>
+            <div class="gen-btn" data-gen="x90">X90 (7gen)</div>
+            <div class="gen-btn" data-gen="x100">X100 (9gen)</div>
+        </div>
+
+        <div class="builder-container">
+            
+            <!-- Car Display -->
+            <div class="car-display">
+                <h2>Ваш Toyota Mark II</h2>
+                <div class="car-image-container">
+                    <div class="car-visualization">
+                        <!-- Кузов -->
+                        <div class="car-body" id="carBody">
+                            <!-- Передняя часть -->
+                            <div class="car-front">
+                                <div class="headlights">
+                                    <div class="headlight left"></div>
+                                    <div class="headlight right"></div>
+                                </div>
+                                <div class="grille"></div>
+                            </div>
+                            
+                            <!-- Салон -->
+                            <div class="car-windows">
+                                <div class="windshield"></div>
+                                <div class="side-windows">
+                                    <div class="window front"></div>
+                                    <div class="window rear"></div>
+                                </div>
+                                <div class="rear-window"></div>
+                            </div>
+                            
+                            <!-- Задняя часть -->
+                            <div class="car-rear">
+                                <div class="taillights">
+                                    <div class="taillight left"></div>
+                                    <div class="taillight right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Колеса -->
+                        <div class="car-wheels">
+                            <div class="wheel front-left" id="frontWheel"></div>
+                            <div class="wheel front-right"></div>
+                            <div class="wheel rear-left" id="rearWheel"></div>
+                            <div class="wheel rear-right"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="performance-meter">
+                    <div class="meter">
+                        <div class="meter-label">Мощность</div>
+                        <div class="meter-value" id="powerValue">280 л.с.</div>
+                        <div class="meter-label">Двигатель</div>
+                    </div>
+                    <div class="meter">
+                        <div class="meter-label">Разгон 0-100</div>
+                        <div class="meter-value" id="accelerationValue">6.8с</div>
+                        <div class="meter-label">Время</div>
+                    </div>
+                    <div class="meter">
+                        <div class="meter-label">Стоимость</div>
+                        <div class="meter-value" id="priceValue">850,000 ₽</div>
+                        <div class="meter-label">Рублей</div>
+                    </div>
+                    <div class="meter">
+                        <div class="meter-label">Рейтинг</div>
+                        <div class="meter-value" id="ratingValue">9.2/10</div>
+                        <div class="meter-label">Оценка</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customization Panel -->
+            <div class="customization-panel">
+                <!-- Color Selection -->
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-palette"></i>
+                        Цвет кузова
+                    </h3>
+                    <div class="color-options">
+                        <div class="color-option active" style="background: #e10e17;" data-color="#e10e17"></div>
+                        <div class="color-option" style="background: #2c3e50;" data-color="#2c3e50"></div>
+                        <div class="color-option" style="background: #ecf0f1;" data-color="#ecf0f1"></div>
+                        <div class="color-option" style="background: #f39c12;" data-color="#f39c12"></div>
+                        <div class="color-option" style="background: #27ae60;" data-color="#27ae60"></div>
+                        <div class="color-option" style="background: #8e44ad;" data-color="#8e44ad"></div>
+                    </div>
+                </div>
+
+                <!-- Engine Selection -->
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-cog"></i>
+                        Двигатель
+                    </h3>
+                    <div class="options-grid">
+                        <div class="option-item active" data-engine="1jz" data-power="280" data-price="150000">
+                            <div>1JZ-GTE 2.5L</div>
+                            <div class="option-price">+150,000 ₽</div>
+                        </div>
+                        <div class="option-item" data-engine="1g" data-power="200" data-price="50000">
+                            <div>1G-FE 2.0L</div>
+                            <div class="option-price">+50,000 ₽</div>
+                        </div>
+                        <div class="option-item" data-engine="2jz" data-power="320" data-price="300000">
+                            <div>2JZ-GTE 3.0L</div>
+                            <div class="option-price">+300,000 ₽</div>
+                        </div>
+                        <div class="option-item" data-engine="7m" data-power="170" data-price="0">
+                            <div>7M-GE 2.0L</div>
+                            <div class="option-price">Базовый</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transmission -->
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-exchange-alt"></i>
+                        Коробка передач
+                    </h3>
+                    <div class="options-grid">
+                        <div class="option-item active" data-transmission="auto" data-price="0">
+                            <div>Автомат</div>
+                            <div class="option-price">Базовый</div>
+                        </div>
+                        <div class="option-item" data-transmission="manual" data-price="20000">
+                            <div>Механика</div>
+                            <div class="option-price">+20,000 ₽</div>
+                        </div>
+                        <div class="option-item" data-transmission="sequential" data-price="150000">
+                            <div>Последовательная</div>
+                            <div class="option-price">+150,000 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wheels -->
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Диски и шины
+                    </h3>
+                    <div class="options-grid">
+                        <div class="option-item active" data-wheels="stock" data-price="0">
+                            <div>Стандартные</div>
+                            <div class="option-price">Базовые</div>
+                        </div>
+                        <div class="option-item" data-wheels="sport" data-price="80000">
+                            <div>Спортивные</div>
+                            <div class="option-price">+80,000 ₽</div>
+                        </div>
+                        <div class="option-item" data-wheels="jdm" data-price="120000">
+                            <div>JDM литые</div>
+                            <div class="option-price">+120,000 ₽</div>
+                        </div>
+                        <div class="option-item" data-wheels="vip" data-price="200000">
+                            <div>VIP стиль</div>
+                            <div class="option-price">+200,000 ₽</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suspension -->
+                <div class="panel-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                        Подвеска
+                    </h3>
+                    <div class="slider-container">
+                        <label>Высота посадки:</label>
+                        <input type="range" min="0" max="100" value="50" class="slider" id="suspensionSlider">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                            <span>Стандарт</span>
+                            <span>Спорт</span>
+                            <span>Дрифт</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="summary">
+                    <h3 class="section-title">
+                        <i class="fas fa-receipt"></i>
+                        Ваш заказ
+                    </h3>
+                    <div class="summary-item">
+                        <span>Базовая цена:</span>
+                        <span>500,000 ₽</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Двигатель:</span>
+                        <span id="enginePrice">+150,000 ₽</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>КПП:</span>
+                        <span id="transmissionPrice">+0 ₽</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Диски:</span>
+                        <span id="wheelsPrice">+0 ₽</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Итого:</span>
+                        <span id="totalPrice">650,000 ₽</span>
+                    </div>
+                </div>
+
+                <button class="btn" id="saveBtn">
+                    <i class="fas fa-save"></i> Сохранить конфигурацию
+                </button>
+                <button class="btn btn-secondary" id="shareBtn">
+                    <i class="fas fa-share"></i> Поделиться
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current configuration
+        const config = {
+            generation: 'x90',
+            color: '#e10e17',
+            engine: '1jz',
+            transmission: 'auto',
+            wheels: 'stock',
+            suspension: 50,
+            basePrice: 500000
+        };
+
+        // Price calculation
+        function calculateTotalPrice() {
+            const enginePrice = parseInt(document.querySelector('.option-item[data-engine].active')?.dataset.price || 0);
+            const transmissionPrice = parseInt(document.querySelector('.option-item[data-transmission].active')?.dataset.price || 0);
+            const wheelsPrice = parseInt(document.querySelector('.option-item[data-wheels].active')?.dataset.price || 0);
+            
+            const total = config.basePrice + enginePrice + transmissionPrice + wheelsPrice;
+            
+            // Update display
+            document.getElementById('enginePrice').textContent = `+${enginePrice.toLocaleString()} ₽`;
+            document.getElementById('transmissionPrice').textContent = `+${transmissionPrice.toLocaleString()} ₽`;
+            document.getElementById('wheelsPrice').textContent = `+${wheelsPrice.toLocaleString()} ₽`;
+            document.getElementById('totalPrice').textContent = `${total.toLocaleString()} ₽`;
+            document.getElementById('priceValue').textContent = `${total.toLocaleString()} ₽`;
+            
+            return total;
+        }
+
+        // Update performance metrics
+        function updatePerformance() {
+            const engine = document.querySelector('.option-item[data-engine].active');
+            const power = engine ? parseInt(engine.dataset.power) : 280;
+            const transmission = config.transmission;
+            
+            // Calculate acceleration based on engine and transmission
+            let acceleration = 6.8;
+            if (power <= 170) acceleration = 9.5;
+            else if (power <= 200) acceleration = 8.2;
+            else if (power <= 280) acceleration = 6.8;
+            else acceleration = 5.9;
+            
+            if (transmission === 'manual') acceleration -= 0.3;
+            if (transmission === 'sequential') acceleration -= 0.5;
+            
+            document.getElementById('powerValue').textContent = `${power} л.с.`;
+            document.getElementById('accelerationValue').textContent = `${acceleration.toFixed(1)}с`;
+            
+            // Update rating
+            const rating = 8.5 + (power - 200) * 0.01;
+            document.getElementById('ratingValue').textContent = `${Math.min(10, rating).toFixed(1)}/10`;
+        }
+
+        // Color selection
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                const color = this.dataset.color;
+                config.color = color;
+                document.getElementById('carBody').style.background = color;
+            });
+        });
+
+        // Option selection
+        function setupOptionSelection(selector, type) {
+            document.querySelectorAll(selector).forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll(selector).forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    config[type] = this.dataset[type];
+                    calculateTotalPrice();
+                    updatePerformance();
+                });
+            });
+        }
+
+        // Initialize option selections
+        setupOptionSelection('.option-item[data-engine]', 'engine');
+        setupOptionSelection('.option-item[data-transmission]', 'transmission');
+        setupOptionSelection('.option-item[data-wheels]', 'wheels');
+
+        // Suspension slider
+        document.getElementById('suspensionSlider').addEventListener('input', function(e) {
+            config.suspension = parseInt(e.target.value);
+            const height = 100 + (50 - config.suspension) * 2;
+            document.getElementById('carBody').style.top = `${height}px`;
+            document.getElementById('carWindows').style.top = `${height + 5}px`;
+        });
+
+        // Generation selection
+        document.querySelectorAll('.gen-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.gen-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                config.generation = this.dataset.gen;
+                updateGenerationDisplay();
+            });
+        });
+
+                // Update wheel appearance based on selection
+        function updateWheels() {
+            const wheels = document.querySelectorAll('.wheel');
+            const wheelStyle = config.wheels;
+            
+            wheels.forEach(wheel => {
+                wheel.setAttribute('data-style', wheelStyle);
+            });
+        }
+
+        // Update car body based on generation
+        function updateGenerationDisplay() {
+            const basePrices = {
+                'x30': 300000,
+                'x70': 400000,
+                'x90': 500000,
+                'x100': 600000
+            };
+            
+            config.basePrice = basePrices[config.generation];
+            calculateTotalPrice();
+            
+            // Update car appearance based on generation
+            const body = document.getElementById('carBody');
+            switch(config.generation) {
+                case 'x30':
+                    body.style.width = '250px';
+                    body.style.height = '70px';
+                    body.style.borderRadius = '20px 20px 10px 10px';
+                    break;
+                case 'x70':
+                    body.style.width = '280px';
+                    body.style.height = '75px';
+                    body.style.borderRadius = '15px 15px 8px 8px';
+                    break;
+                case 'x90':
+                    body.style.width = '300px';
+                    body.style.height = '80px';
+                    body.style.borderRadius = '12px 12px 6px 6px';
+                    break;
+                case 'x100':
+                    body.style.width = '320px';
+                    body.style.height = '85px';
+                    body.style.borderRadius = '10px 10px 5px 5px';
+                    break;
+            }
+            
+            updateWheels();
+        }
+
+        // Update wheel selection handler
+        setupOptionSelection('.option-item[data-wheels]', 'wheels');
+
+        // Save configuration
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            const configuration = {
+                ...config,
+                totalPrice: calculateTotalPrice()
+            };
+            
+            localStorage.setItem('mark2_dream_build', JSON.stringify(configuration));
+            
+            // Show success message
+            this.innerHTML = '<i class="fas fa-check"></i> Конфигурация сохранена!';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-save"></i> Сохранить конфигурацию';
+            }, 2000);
+        });
+
+        // Share configuration
+        document.getElementById('shareBtn').addEventListener('click', function() {
+            const configuration = {
+                ...config,
+                totalPrice: calculateTotalPrice()
+            };
+            
+            const shareText = `Мой Toyota Mark II Dream Build!\n` +
+                            `Поколение: ${config.generation.toUpperCase()}\n` +
+                            `Двигатель: ${document.querySelector('.option-item[data-engine].active').textContent}\n` +
+                            `Мощность: ${document.getElementById('powerValue').textContent}\n` +
+                            `Стоимость: ${document.getElementById('totalPrice').textContent}\n\n` +
+                            `Собери свой на: example.com`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Мой Toyota Mark II',
+                    text: shareText,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(shareText).then(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-share"></i> Поделиться';
+                    }, 2000);
+                });
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            calculateTotalPrice();
+            updatePerformance();
+            updateGenerationDisplay();
+            
+            // Load saved configuration
+            const saved = localStorage.getItem('mark2_dream_build');
+            if (saved) {
+                const savedConfig = JSON.parse(saved);
+                Object.assign(config, savedConfig);
+                
+                // Apply saved configuration
+                document.querySelector(`.color-option[data-color="${config.color}"]`)?.click();
+                document.querySelector(`.option-item[data-engine="${config.engine}"]`)?.click();
+                document.querySelector(`.option-item[data-transmission="${config.transmission}"]`)?.click();
+                document.querySelector(`.option-item[data-wheels="${config.wheels}"]`)?.click();
+                document.querySelector(`.gen-btn[data-gen="${config.generation}"]`)?.click();
+                document.getElementById('suspensionSlider').value = config.suspension;
+            }
+        });
+    </script>
+</body>
+</html>
