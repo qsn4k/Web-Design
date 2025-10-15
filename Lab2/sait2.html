@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сравнение Toyota Mark II</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #e10e17 0%, #8b0000 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #e10e17;
+            margin: 25px 0 15px;
+            border-bottom: 2px solid #e10e17;
+            padding-bottom: 8px;
+        }
+        
+        nav {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #ffcc00;
+        }
+        
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        figure {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        figure img:hover {
+            transform: scale(1.02);
+        }
+        
+        figcaption {
+            font-style: italic;
+            margin-top: 10px;
+            color: #666;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #e10e17;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #ffe6e6;
+        }
+        
+        aside {
+            background-color: #ffe6e6;
+            padding: 15px;
+            border-left: 4px solid #e10e17;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        details {
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        blockquote {
+            background-color: #f9f9f9;
+            border-left: 5px solid #e10e17;
+            margin: 20px 0;
+            padding: 15px 20px;
+            font-style: italic;
+        }
+        
+        .mini-table {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .mini-table div {
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+        }
+        
+        .mini-table div:nth-child(odd) {
+            font-weight: bold;
+        }
+        
+        progress {
+            width: 100%;
+            height: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .car-model {
+            font-size: 1.8rem;
+            color: #e10e17;
+        }
+        
+        .price {
+            font-size: 1.4rem;
+            color: #d40000;
+            font-weight: bold;
+        }
+        
+        .generation {
+            display: inline-block;
+            background-color: #e10e17;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .mini-table {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Легендарный Toyota Mark II</h1>
+        <p>Сравнение трех поколений культового японского автомобиля</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#mark2-x30">Mark II (X30)</a></li>
+            <li><a href="#mark2-x70">Mark II (X70)</a></li>
+            <li><a href="#mark2-x90">Mark II (X90)</a></li>
+            <li><a href="#comparison">Сравнительная таблица</a></li>
+            <li><a href="index.html">Общее задание</a></li>
+        </ul>
+    </nav>
+    
+    <section id="mark2-x30">
+        <h2 class="car-model">Toyota Mark II (X30) <span class="generation">1-е поколение</span></h2>
+        
+        <figure>
+            <img src="x30.jfif" alt="Toyota Mark II X30">
+            <figcaption>Toyota Mark II (X30) - первое поколение, выпускавшееся с 1968 по 1972 год</figcaption>
+        </figure>
+        
+        <div class="mini-table">
+            <div>Тип двигателя</div>
+            <div>Бензиновый</div>
+            <div>Коробка передач</div>
+            <div>Механическая (4-ступенчатая)</div>
+            <div>Цена в период выпуска</div>
+            <div class="price">~ 750 000 иен</div>
+        </div>
+        
+        <details>
+            <summary>Подробные характеристики</summary>
+            <table>
+                <tr>
+                    <th>Характеристика</th>
+                    <th>Значение</th>
+                </tr>
+                <tr>
+                    <td>Тип двигателя</td>
+                    <td>Бензиновый, 1.9 л (4M)</td>
+                </tr>
+                <tr>
+                    <td>Мощность</td>
+                    <td>105 л.с.</td>
+                </tr>
+                <tr>
+                    <td>Расход топлива</td>
+                    <td>9.5 л/100 км (городской цикл)</td>
+                </tr>
+                <tr>
+                    <td>Тип КПП</td>
+                    <td>Механическая</td>
+                </tr>
+                <tr>
+                    <td>Количество передач</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Габариты (Д×Ш×В)</td>
+                    <td>4290×1610×1405 мм</td>
+                </tr>
+                <tr>
+                    <td>Колесная база</td>
+                    <td>2530 мм</td>
+                </tr>
+                <tr>
+                    <td>Объем багажника</td>
+                    <td>410 л</td>
+                </tr>
+                <tr>
+                    <td>Разгон до 100 км/ч</td>
+                    <td>13.5 с</td>
+                </tr>
+                <tr>
+                    <td>Максимальная скорость</td>
+                    <td>165 км/ч</td>
+                </tr>
+                <tr>
+                    <td>Тормозная система</td>
+                    <td>Дисковые спереди, барабанные сзади</td>
+                </tr>
+                <tr>
+                    <td>Привод</td>
+                    <td>Задний</td>
+                </tr>
+            </table>
+        </details>
+        
+        <details>
+            <summary>Системы безопасности</summary>
+            <ul>
+                <li>Ремни безопасности</li>
+                <li>Усиленная конструкция кузова</li>
+                <li>Стеклоочистители с двумя скоростями</li>
+                <li>Обогрев заднего стекла</li>
+            </ul>
+            
+            <p>Для своего времени Mark II считался безопасным автомобилем, хотя современные системы безопасности в 60-х годах были ограничены.</p>
+            
+            <p>Прогресс по безопасности для своего времени:</p>
+            <label for="safety-x30">Общая безопасность:</label>
+            <progress id="safety-x30" value="45" max="100">45%</progress>
+        </details>
+        
+        <aside>
+            <h3>Интересный факт</h3>
+            <p>Toyota Mark II (X30) изначально позиционировался как более роскошная версия Toyota Corona. Название "Mark II" означало, что это вторая марка в линейке Toyota после Crown.</p>
+        </aside>
+        
+        <blockquote>
+            <p>"Mark II первого поколения стал важным шагом для Toyota в сегменте бизнес-седанов. Его сбалансированные характеристики и надежность заложили основу для будущего успеха модели."</p>
+            <cite>— Историк автомобильной промышленности Японии</cite>
+        </blockquote>
+        
+        <p>Период выпуска: <time datetime="1968-12">Декабрь 1968</time> - <time datetime="1972-05">Май 1972</time></p>
+    </section>
+    
+    <section id="mark2-x70">
+        <h2 class="car-model">Toyota Mark II (X70) <span class="generation">4-е поколение</span></h2>
+        
+        <figure>
+            <img src="x70.jpg" alt="Toyota Mark II X70">
+            <figcaption>Toyota Mark II (X70) - четвертое поколение, выпускавшееся с 1980 по 1984 год</figcaption>
+        </figure>
+        
+        <div class="mini-table">
+            <div>Тип двигателя</div>
+            <div>Бензиновый</div>
+            <div>Коробка передач</div>
+            <div>Механическая (5-ступенчатая)</div>
+            <div>Цена в период выпуска</div>
+            <div class="price">~ 1 200 000 иен</div>
+        </div>
+        
+        <details>
+            <summary>Подробные характеристики</summary>
+            <table>
+                <tr>
+                    <th>Характеристика</th>
+                    <th>Значение</th>
+                </tr>
+                <tr>
+                    <td>Тип двигателя</td>
+                    <td>Бензиновый, 2.0 л (1G-EU)</td>
+                </tr>
+                <tr>
+                    <td>Мощность</td>
+                    <td>130 л.с.</td>
+                </tr>
+                <tr>
+                    <td>Расход топлива</td>
+                    <td>10.2 л/100 км (городской цикл)</td>
+                </tr>
+                <tr>
+                    <td>Тип КПП</td>
+                    <td>Механическая / Автоматическая (4-ступ)</td>
+                </tr>
+                <tr>
+                    <td>Количество передач</td>
+                    <td>5 (механика) / 4 (автомат)</td>
+                </tr>
+                <tr>
+                    <td>Габариты (Д×Ш×В)</td>
+                    <td>4640×1690×1395 мм</td>
+                </tr>
+                <tr>
+                    <td>Колесная база</td>
+                    <td>2640 мм</td>
+                </tr>
+                <tr>
+                    <td>Объем багажника</td>
+                    <td>450 л</td>
+                </tr>
+                <tr>
+                    <td>Разгон до 100 км/ч</td>
+                    <td>10.8 с</td>
+                </tr>
+                <tr>
+                    <td>Максимальная скорость</td>
+                    <td>185 км/ч</td>
+                </tr>
+                <tr>
+                    <td>Тормозная система</td>
+                    <td>Дисковые спереди, барабанные сзади</td>
+                </tr>
+                <tr>
+                    <td>Привод</td>
+                    <td>Задний</td>
+                </tr>
+            </table>
+        </details>
+        
+        <details>
+            <summary>Системы безопасности</summary>
+            <ul>
+                <li>Ремни безопасности с инерционными катушками</li>
+                <li>Усиленная зональная конструкция кузова</li>
+                <li>Двухконтурная тормозная система</li>
+                <li>Стеклоочистители с интервальным режимом</li>
+                <li>Противоугонная система (опционально)</li>
+            </ul>
+            
+            <p>В этом поколении появились улучшения в безопасности, характерные для 80-х годов.</p>
+            
+            <p>Прогресс по безопасности для своего времени:</p>
+            <label for="safety-x70">Общая безопасность:</label>
+            <progress id="safety-x70" value="60" max="100">60%</progress>
+        </details>
+        
+        <aside>
+            <h3>Интересный факт</h3>
+            <p>Mark II четвертого поколения стал первым, получившим знаменитый рядный шестицилиндровый двигатель серии 1G. Эта силовая установка стала одной из самых надежных в истории Toyota.</p>
+        </aside>
+        
+        <blockquote>
+            <p>"X70 поколение Mark II сохранило классические пропорции и задний привод, но стало более современным и технологичным. Это был идеальный баланс между традициями и прогрессом."</p>
+            <cite>— Автомобильный эксперт журнала "Best Car"</cite>
+        </blockquote>
+        
+        <p>Период выпуска: <time datetime="1980-08">Август 1980</time> - <time datetime="1984-09">Сентябрь 1984</time></p>
+    </section>
+    
+    <section id="mark2-x90">
+        <h2 class="car-model">Toyota Mark II (X90) <span class="generation">7-е поколение</span></h2>
+        
+        <figure>
+            <img src="x90.jpg" alt="Toyota Mark II X90">
+            <figcaption>Toyota Mark II (X90) - седьмое поколение, выпускавшееся с 1992 по 1996 год</figcaption>
+        </figure>
+        
+        <div class="mini-table">
+            <div>Тип двигателя</div>
+            <div>Бензиновый</div>
+            <div>Коробка передач</div>
+            <div>Автоматическая (4-ступенчатая)</div>
+            <div>Цена в период выпуска</div>
+            <div class="price">~ 2 500 000 иен</div>
+        </div>
+        
+        <details>
+            <summary>Подробные характеристики</summary>
+            <table>
+                <tr>
+                    <th>Характеристика</th>
+                    <th>Значение</th>
+                </tr>
+                <tr>
+                    <td>Тип двигателя</td>
+                    <td>Бензиновый, 2.5 л (1JZ-GTE)</td>
+                </tr>
+                <tr>
+                    <td>Мощность</td>
+                    <td>280 л.с. (ограничение)</td>
+                </tr>
+                <tr>
+                    <td>Расход топлива</td>
+                    <td>11.5 л/100 км (городской цикл)</td>
+                </tr>
+                <tr>
+                    <td>Тип КПП</td>
+                    <td>Автоматическая</td>
+                </tr>
+                <tr>
+                    <td>Количество передач</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Габариты (Д×Ш×В)</td>
+                    <td>4760×1755×1390 мм</td>
+                </tr>
+                <tr>
+                    <td>Колесная база</td>
+                    <td>2730 мм</td>
+                </tr>
+                <tr>
+                    <td>Объем багажника</td>
+                    <td>460 л</td>
+                </tr>
+                <tr>
+                    <td>Разгон до 100 км/ч</td>
+                    <td>6.8 с</td>
+                </tr>
+                <tr>
+                    <td>Максимальная скорость</td>
+                    <td>180 км/ч (ограничена электроникой)</td>
+                </tr>
+                <tr>
+                    <td>Тормозная система</td>
+                    <td>Дисковые вентилируемые на всех колесах</td>
+                </tr>
+                <tr>
+                    <td>Привод</td>
+                    <td>Задний</td>
+                </tr>
+            </table>
+        </details>
+        
+        <details>
+            <summary>Системы безопасности</summary>
+            <ul>
+                <li>АБС (антиблокировочная система)</li>
+                <li>Водительская подушка безопасности</li>
+                <li>Усиленная конструкция кузова с зонами деформации</li>
+                <li>Иммобилайзер</li>
+                <li>Центральный замок</li>
+                <li>Передние ремни с преднатяжителями</li>
+            </ul>
+            
+            <p>X90 поколение получило значительные улучшения в безопасности, соответствующие стандартам 90-х годов.</p>
+            
+            <p>Прогресс по безопасности для своего времени:</p>
+            <label for="safety-x90">Общая безопасность:</label>
+            <progress id="safety-x90" value="75" max="100">75%</progress>
+        </details>
+        
+        <aside>
+            <h3>Интересный факт</h3>
+            <p>Mark II седьмого поколения (X90) с турбированным двигателем 1JZ-GTE стал культовым в автомобильной субкультуре дрифта. Его идеальная развесовка и мощный двигатель сделали его одним из самых желанных автомобилей для тюнинга.</p>
+        </aside>
+        
+        <blockquote>
+            <p>"Tourer V с двигателем 1JZ-GTE - это легенда японского автопрома. Идеальный заднеприводный седан с турбодвигателем, который стал основой для множества дрифт-проектов по всему миру."</p>
+            <cite>— Основатель дрифт-клуба "JZX Project"</cite>
+        </blockquote>
+        
+        <p>Период выпуска: <time datetime="1992-10">Октябрь 1992</time> - <time datetime="1996-08">Август 1996</time></p>
+    </section>
+    
+    <section id="comparison">
+        <h2>Сравнительная таблица характеристик</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Характеристика</th>
+                    <th>Mark II (X30)</th>
+                    <th>Mark II (X70)</th>
+                    <th>Mark II (X90)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Период выпуска</td>
+                    <td>1968-1972</td>
+                    <td>1980-1984</td>
+                    <td>1992-1996</td>
+                </tr>
+                <tr>
+                    <td>Тип двигателя</td>
+                    <td>Бензиновый, 1.9 л</td>
+                    <td>Бензиновый, 2.0 л</td>
+                    <td>Бензиновый, 2.5 л турбо</td>
+                </tr>
+                <tr>
+                    <td>Мощность</td>
+                    <td>105 л.с.</td>
+                    <td>130 л.с.</td>
+                    <td>280 л.с.</td>
+                </tr>
+                <tr>
+                    <td>Расход топлива</td>
+                    <td>9.5 л/100 км</td>
+                    <td>10.2 л/100 км</td>
+                    <td>11.5 л/100 км</td>
+                </tr>
+                <tr>
+                    <td>Тип КПП</td>
+                    <td>Механическая</td>
+                    <td>Мех./Автомат</td>
+                    <td>Автоматическая</td>
+                </tr>
+                <tr>
+                    <td>Количество передач</td>
+                    <td>4</td>
+                    <td>5/4</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Габариты (Д×Ш×В)</td>
+                    <td>4290×1610×1405</td>
+                    <td>4640×1690×1395</td>
+                    <td>4760×1755×1390</td>
+                </tr>
+                <tr>
+                    <td>Колесная база</td>
+                    <td>2530 мм</td>
+                    <td>2640 мм</td>
+                    <td>2730 мм</td>
+                </tr>
+                <tr>
+                    <td>Объем багажника</td>
+                    <td>410 л</td>
+                    <td>450 л</td>
+                    <td>460 л</td>
+                </tr>
+                <tr>
+                    <td>Разгон до 100 км/ч</td>
+                    <td>13.5 с</td>
+                    <td>10.8 с</td>
+                    <td>6.8 с</td>
+                </tr>
+                <tr>
+                    <td>Максимальная скорость</td>
+                    <td>165 км/ч</td>
+                    <td>185 км/ч</td>
+                    <td>180 км/ч</td>
+                </tr>
+                <tr>
+                    <td>Тормозная система</td>
+                    <td>Диски/Барабаны</td>
+                    <td>Диски/Барабаны</td>
+                    <td>Диски на всех колесах</td>
+                </tr>
+                <tr>
+                    <td>Привод</td>
+                    <td>Задний</td>
+                    <td>Задний</td>
+                    <td>Задний</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <footer>
+        <p>© 2025 Лабораторная работа №2. Всем хорошего настроение!</p>
+        <p>Чтобы поблагодарить автора можете перейти на его <a href = "https://www.github.com/qsn4k">GitHub</a>.</p>
+    </footer>
+</body>
+</html> 
