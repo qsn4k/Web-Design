@@ -1,36 +1,47 @@
-/* 1. Универсальный селектор — задаем базовый стиль */
 * {
   font-family: Arial, sans-serif;
 }
 
-/* 2. Селекторы по тегу */
 h1 {
   color: red;
 }
+
 p {
   font-size: 16px;
 }
 
-/* 3. Селекторы по классу */
 .link {
   color: green;
 }
 .special-link {
   color: blue;
 }
+.post {
+  color: violet;
+}
+.widget {
+  color: pink;
+}
+.important-widget{
+  color:#800000;
+}
+.highlighted{
+  color: black;
+}
 
-/* 4. Селектор по идентификатору */
 #first-post p {
   color: orange;
 }
 
-/* 5. Атрибутные селекторы */
+#first-post h2 {
+  color: orange;
+}
+
 input[placeholder="Белый"] {
   background-color: white;
   color: black;
 }
 
-/* 6. Псевдоклассы и псевдоэлементы */
 .nav-list li:nth-child(3) a {
   color: yellow;
 }
@@ -42,7 +53,6 @@ h3::before {
   color: gray;
 }
 
-/* 7. Селекторы потомков */
 .color-list li {
   color: gray;
 }
@@ -50,17 +60,12 @@ h3::before {
   color: brown;
 }
 
-/* 8. Селекторы соседей */
 h2 + p {
   color: violet;
 }
 
-/* Дополнительные стили по классам */
 .highlighted {
   color: black;
-}
-.important-widget .note {
-  color: maroon;
 }
 .submit-btn {
   color: black;
