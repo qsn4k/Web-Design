@@ -311,6 +311,45 @@
             color: var(--accent);
             margin-bottom: 10px;
         }
+
+        /* ========================================
+        * НОВЫЕ СТИЛИ ДЛЯ КАРТОЧКИ "ВИЗИТКА"
+        * ======================================== */
+        .lab-card.business-card {
+            /* Дополнительные стили, чтобы выделить визитку */
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border: 2px solid var(--light);
+            color: var(--light);
+        }
+
+        .lab-card.business-card .lab-icon,
+        .lab-card.business-card .lab-title,
+        .lab-card.business-card .lab-desc {
+            color: var(--light);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .lab-card.business-card .lab-icon {
+            font-size: 3.5rem; /* Сделаем иконку больше */
+            margin-top: 10px;
+        }
+
+        .lab-card.business-card .lab-link {
+            background: var(--light); /* Светлая кнопка */
+            color: var(--dark); /* Темный текст */
+            padding: 15px;
+            font-size: 1.1rem;
+            border: none;
+        }
+
+        .lab-card.business-card .lab-link:hover {
+            background: #e0e0e0;
+            transform: scale(1.02);
+        }
+
+        .lab-card.business-card .lab-meta {
+            display: none; /* Скрываем мета-информацию */
+        }
     </style>
 </head>
 <body>
@@ -393,6 +432,24 @@
         </div>
 
         <section class="labs-section">
+
+            <div class="lab-card business-card">
+            <div class="lab-icon">
+                <i class="fas fa-address-card"></i>
+            </div>
+            <h3 class="lab-title">Визитная карточка меня)</h3>
+            <p class="lab-desc">
+                Персональная страница с контактной информацией и кратким резюме. 
+                Нажмите, чтобы увидеть мои данные в виде отдельного сайта. Подготовлена в лабораторной работе №4
+            </p>
+            <div class="lab-meta">
+                <span class="status status-completed">Проект</span>
+                <span>Доступно всегда</span>
+            </div>
+            <a href="business_card/index.html" class="lab-link">
+                Перейти на лучшую визитку
+            </a>
+            </div>
             <h2 class="section-title">Лабораторные работы</h2>
             
             <div class="labs-grid">
