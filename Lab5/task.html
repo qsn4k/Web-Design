@@ -38,10 +38,12 @@
         
         .box-relative-2 
         {
+            flex-wrap: wrap-reverse;
             position: relative;
             background-color: pink;
             top: -50px;
             left: 80px;
+            z-index: 2;
         }
 
         .container 
@@ -50,13 +52,15 @@
             width: 400px;
             height: 400px;
             background-color: #ddd;
-            margin-top: 20px;
+            margin-top: 2px;
         }
         
         .box-absolute-1 
         {
             position: absolute;
             background-color: orange;
+            width: 200px;
+            height: 200px;
             top: 20px;
             left: 20px;
             z-index: 3;
@@ -67,7 +71,7 @@
             position: absolute;
             background-color: #87CEEB;
             width: 200px;
-            height: 150px;
+            height: 200px;
             top: 60px;
             left: 60px;
             z-index: 2;
@@ -88,21 +92,22 @@
         {
             position: relative;
             background-color: lightcoral;
-            width: 150px;
-            height: 150px;
-            top: -300px;
-            left: 200px;
+            width: 210px;
+            height: 210px;
+            top: -780px;
+            left: 1175px;
             z-index: 5;
+            /* margin-left: 65%; */
         }
         
         .box-zindex-2 
         {
             position: relative;
             background-color: teal;
-            width: 150px;
-            height: 150px;
-            top: -420px;
-            left: 250px;
+            width: 210px;
+            height: 210px;
+            top: -880px;
+            left: 1225px;
             z-index: 4;
         }
 
@@ -113,7 +118,7 @@
             color: black;
             top: 0;
             right: 0;
-            z-index: 10;
+            z-index: 3;
         }
 
         .box-fixed-2 
@@ -135,9 +140,9 @@
     <div class="box-relative-2">Relative 2</div>
     <!-- Container with absolute positioned boxes inside -->
     <div class="container">
-    <div class="box-absolute-1">Absolute 1</div>
-    <div class="box-absolute-2">Absolute 2</div>
-    <div class="box-absolute-3">Absolute 3</div>
+        <div class="box-absolute-1">Absolute 1</div>
+        <div class="box-absolute-2">Absolute 2</div>
+        <div class="box-absolute-3">Absolute 3</div>
     </div>
     <!-- Overlapping boxes with z-index outside container -->
     <div class="box-zindex-1">Z-Index 5</div>
