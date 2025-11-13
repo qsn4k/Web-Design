@@ -217,6 +217,84 @@ a {
 }
 
 /* ========================================
+ * СЕКЦИЯ 3: ДОСТИЖЕНИЯ (ДОП. ЗАДАНИЕ FLEXBOX)
+ * ======================================== */
+
+/* Flex-контейнер для карточек */
+.achievements-container {
+    display: flex;
+    flex-direction: row; /* Выстраиваем в ряд */
+    justify-content: center; /* Центрируем карточки по горизонтали */
+    align-items: stretch; /* Карточки будут одинаковой высоты */
+    flex-wrap: wrap; /* Позволяет карточкам переноситься */
+    gap: 30px; /* Расстояние между карточками */
+}
+
+/* Стили для отдельной карточки */
+.achievement-card {
+    background-color: var(--light-bg); /* Используем ваш цвет */
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    overflow: hidden; 
+    
+    /* Flex-свойства для карточки */
+    display: flex;
+    flex-direction: column; /* Внутренние элементы в колонку */
+    
+    /* Управление размером карточек для 3-х в ряд */
+    flex-basis: 300px; 
+    flex-grow: 1; 
+    max-width: 350px; 
+}
+
+.card-image {
+    height: 180px;
+    background-color: #f0f0f0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-style: italic;
+    font-size: 1.2em;
+}
+
+.card-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Занимает все оставшееся место */
+}
+
+.card-content h3 {
+    font-size: 1.6em;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.card-content p {
+    font-size: 1em;
+    flex-grow: 1; /* Отталкивает кнопку вниз, чтобы высота была одинаковой */
+    margin-bottom: 20px;
+}
+
+/* Кнопка "Подробнее" */
+.details-button {
+    display: inline-block;
+    background-color: var(--dark-bg);
+    color: var(--light-text-color);
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-align: center;
+    margin-top: auto; /* Прижимает кнопку к низу, если .card-content является flex-контейнером */
+}
+
+.details-button:hover {
+    background-color: #34495e; 
+}
+
+/* ========================================
     * СЕКЦИЯ 3: НАВЫКИ
     * ======================================== */
 .skills-grid {
@@ -423,5 +501,16 @@ a {
     
     .education-grid {
         grid-template-columns: 1fr;
+    }
+
+    .achievements-container {
+        flex-direction: column; /* Карточки встают в колонку */
+        align-items: center; /* Центрируем их на мобильном */
+    }
+
+    .achievement-card {
+        width: 90%; /* Делаем карточку шире */
+        max-width: 400px; /* Но не слишком широкой */
+        flex-basis: auto; 
     }
 }
