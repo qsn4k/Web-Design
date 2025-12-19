@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный JS Калькулятор</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f0f2f5; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .function-block { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 6px; }
+        h2 { color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 5px; margin-top: 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        button:hover { background-color: #218838; }
+        .result { margin-top: 10px; padding: 10px; background-color: #e9ecef; border-radius: 4px; font-weight: bold; }
+        .note { color: #6c757d; font-size: 0.9em; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Интерактивная Проверка JavaScript Функций</h1>
+
+        <div class="function-block">
+            <h2>1. Подсчет процента (`percentage`)</h2>
+            <label for="total1">Общее число (Total):</label>
+            <input type="number" id="total1" value="200">
+            
+            <label for="percent1">Процент (Percent):</label>
+            <input type="number" id="percent1" value="15">
+            
+            <button onclick="calculatePercentage()">Вычислить Процент</button>
+            <div id="result1" class="result">Результат:</div>
+        </div>
+
+        <div class="function-block">
+            <h2>2. Проверка вхождения подстроки (`contains`)</h2>
+            <label for="str2">Основная строка (Str):</label>
+            <input type="text" id="str2" value="JavaScript это круто">
+            
+            <label for="subStr2">Подстрока (SubStr):</label>
+            <input type="text" id="subStr2" value="крут">
+            
+            <button onclick="checkContains()">Проверить</button>
+            <div id="result2" class="result">Результат:</div>
+        </div>
+
+        <div class="function-block">
+            <h2>3. Логическое "И НЕ" (`andNot`)</h2>
+            <label for="a3">Логическое А (true/false):</label>
+            <input type="text" id="a3" value="true" placeholder="true или false">
+            
+            <label for="b3">Логическое B (true/false):</label>
+            <input type="text" id="b3" value="false" placeholder="true или false">
+            
+            <button onclick="calculateAndNot()">Вычислить</button>
+            <div id="result3" class="result">Результат:</div>
+            <div class="note">A И НЕ B. Результат true, только если A=true и B=false.</div>
+        </div>
+
+        <div class="function-block">
+            <h2>4. Удаление свойства из объекта (`removeKey`)</h2>
+            <label for="obj4">Объект (JSON):</label>
+            <input type="text" id="obj4" value='{"name": "Ivan", "age": 25, "city": "Minsk"}'>
+            <div class="note">Введите объект в формате JSON.</div>
+
+            <label for="key4">Ключ свойства для удаления:</label>
+            <input type="text" id="key4" value="age">
+            
+            <button onclick="executeRemoveKey()">Удалить Свойство</button>
+            <div id="result4" class="result">Результат:</div>
+        </div>
+
+        <div class="function-block">
+            <h2>5. Длина массива (`getLength`)</h2>
+            <label for="array5">Массив:</label>
+            <input type="text" id="array5" value="1, 5, 8, 12, 4">
+            <div class="note">Введите элементы через запятую.</div>
+
+            <button onclick="executeGetLength()">Получить Длину</button>
+            <div id="result5" class="result">Результат:</div>
+        </div>
+        
+        <div class="function-block">
+            <h2>6. Сумма чисел массива (`sumArray`)</h2>
+            <label for="array6">Массив чисел:</label>
+            <input type="text" id="array6" value="10, 20, 5, 5">
+            <div class="note">Введите числа через запятую.</div>
+
+            <button onclick="executeSumArray()">Подсчитать Сумму</button>
+            <div id="result6" class="result">Результат:</div>
+        </div>
+
+        <div class="function-block">
+            <h2>7. Извлечение первых букв строк (`getFirstLetters`)</h2>
+            <label for="array7">Массив строк:</label>
+            <input type="text" id="array7" value="Apple, Banana, Cat, Dog">
+            <div class="note">Введите строки через запятую.</div>
+
+            <button onclick="executeGetFirstLetters()">Извлечь Буквы</button>
+            <div id="result7" class="result">Результат:</div>
+        </div>
+
+    </div>
+
+    <script>
+        function percentage(total, percent) {
+            return (total * percent) / 100;
+        }
+
+        function contains(str, subStr) {
+            return str.includes(subStr);
+        }
+
+        function andNot(a, b) {
+            return a && !b;
+        }
+
+        function removeKey(obj, key) {
+            const newObj = { ...obj }; 
+            delete newObj[key];
+            return newObj;
+        }
+
+        function getLength(array) {
+            return array.length;
+        }
+
+        function sumArray(array) {
+            return array.reduce((sum, current) => sum + Number(current), 0);
+        }
+
+        function getFirstLetters(array) {
+            return array.map(str => str.trim().length > 0 ? str.trim()[0] : '');
+        }
+
+        function calculatePercentage() {
+            const total = Number(document.getElementById('total1').value);
+            const percent = Number(document.getElementById('percent1').value);
+            const result = percentage(total, percent);
+            document.getElementById('result1').textContent = `Результат: ${result}`;
+        }
+
+        function checkContains() {
+            const str = document.getElementById('str2').value;
+            const subStr = document.getElementById('subStr2').value;
+            const result = contains(str, subStr);
+            document.getElementById('result2').textContent = `Результат: ${result}`;
+        }
+        
+        function calculateAndNot() {
+            const a = document.getElementById('a3').value.toLowerCase() === 'true';
+            const b = document.getElementById('b3').value.toLowerCase() === 'true';
+            const result = andNot(a, b);
+            document.getElementById('result3').textContent = `Результат: ${result}`;
+        }
+
+        function executeRemoveKey() {
+            const objInput = document.getElementById('obj4').value;
+            const key = document.getElementById('key4').value;
+            
+            try {
+                const obj = JSON.parse(objInput);
+                const resultObj = removeKey(obj, key);
+                document.getElementById('result4').textContent = `Результат: ${JSON.stringify(resultObj)}`;
+            } catch (e) {
+                document.getElementById('result4').textContent = `Ошибка: Неверный формат JSON для объекта.`;
+            }
+        }
+
+        function executeGetLength() {
+            const arrayString = document.getElementById('array5').value;
+            const array = arrayString.split(',').map(item => item.trim());
+            const result = getLength(array);
+            document.getElementById('result5').textContent = `Результат: ${result}`;
+        }
+
+        function executeSumArray() {
+            const arrayString = document.getElementById('array6').value;
+            const array = arrayString.split(',').map(item => item.trim()).filter(item => item !== ''); 
+            const result = sumArray(array);
+            document.getElementById('result6').textContent = `Результат: ${result}`;
+        }
+
+        function executeGetFirstLetters() {
+            const arrayString = document.getElementById('array7').value;
+            const array = arrayString.split(',').map(item => item.trim()).filter(item => item !== '');
+            const result = getFirstLetters(array);
+            document.getElementById('result7').textContent = `Результат: [${result.join(', ')}]`;
+        }
+    </script>
+</body>
+</html>

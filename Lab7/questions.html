@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Ответы на контрольные вопросы по JavaScript</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #28a745;
+            margin-top: 25px;
+            font-size: 1.4em;
+        }
+        p {
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+        code {
+            background-color: #e9ecef;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: Consolas, monospace;
+            color: #d63384;
+        }
+        pre {
+            background-color: #272c35;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .table-container {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Контрольные вопросы и ответы по JavaScript</h1>
+
+        <h2>1. Как проверить, является ли число целым, и какие методы JavaScript можно использовать для этой проверки?</h2>
+        <p><strong>Ответ:</strong> Самый надёжный и современный метод — это статический метод <code>Number.isInteger()</code>, который возвращает <code>true</code>, если значение является числом и не имеет дробной части.</p>
+        <pre><code>// Пример использования Number.isInteger()
+            Number.isInteger(10);     // true
+            Number.isInteger(10.5);   // false
+            Number.isInteger(Infinity); // false
+            </code></pre>
+
+                    <h2>2. Как извлечь подстроку из строки, начиная с определённой позиции и заданной длины? Напишите пример функции.</h2>
+                    <p><strong>Ответ:</strong> Используйте метод <code>String.prototype.slice()</code>, вычислив конечный индекс как сумму начальной позиции и требуемой длины.</p>
+                    <pre><code>/**
+            * Извлекает подстроку, начиная с позиции start, длиной length.
+            */
+            function extractSubstrByLength(str, start, length) {
+            // slice(Начальный индекс, Начальный индекс + Длина)
+            return str.slice(start, start + length);
+            }
+
+            const text = "JavaScript";
+            console.log(extractSubstrByLength(text, 4, 6)); // "Script"
+            </code></pre>
+
+                    <h2>3. Что такое операция "исключающее ИЛИ" (XOR), и как она может быть реализована для двух булевых значений?</h2>
+                    <p><strong>Ответ:</strong> Операция XOR возвращает <code>true</code> только в том случае, когда оба операнда имеют **разные** логические значения (один <code>true</code>, другой <code>false</code>).</p>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>A</th>
+                                    <th>B</th>
+                                    <th>A XOR B</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>True</td><td>True</td><td>False</td></tr>
+                                <tr><td>True</td><td>False</td><td>True</td></tr>
+                                <tr><td>False</td><td>True</td><td>True</td></tr>
+                                <tr><td>False</td><td>False</td><td>False</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Реализация в JS:</p>
+                    <pre><code>function xor(a, b) {
+            // Самая простая реализация
+            return a !== b; 
+
+            // Альтернатива: (A И НЕ B) ИЛИ (НЕ A И B)
+            // return (a && !b) || (!a && b);
+            }
+            </code></pre>
+
+                    <h2>4. Как проверить, содержит ли объект определённое свойство, и в чём разница между использованием <code>in</code> и <code>hasOwnProperty</code>?</h2>
+                    <p><strong>Ответ:</strong> Оператор <code>in</code> проверяет наличие свойства в самом объекте **ИЛИ** в его цепочке прототипов (включая наследуемые свойства). Метод <code>hasOwnProperty()</code> проверяет наличие свойства **только** в самом объекте (его собственное свойство).</p>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Метод</th>
+                                    <th>Наследование</th>
+                                    <th>Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>'prop' in obj</code></td><td>Включает</td><td>Проверяет свойство в объекте и его прототипах.</td></tr>
+                                <tr><td><code>obj.hasOwnProperty('prop')</code></td><td>Исключает</td><td>Проверяет только собственное свойство объекта.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2>5. Чем отличаются методы <code>forEach</code> и <code>map</code> при работе с массивами? Приведите примеры их использования.</h2>
+                    <p><strong>Ответ:</strong> <code>forEach</code> используется для итерации и выполнения побочных эффектов (например, вывод, изменение внешней переменной), и возвращает <code>undefined</code>. <code>map</code> используется для трансформации (преобразования) каждого элемента в новый элемент, и возвращает **новый массив** той же длины.</p>
+                    
+                    <h3>Пример <code>map</code> (Трансформация):</h3>
+                    <pre><code>const tempsCelsius = [10, 15, 20];
+
+            // map создает НОВЫЙ массив, преобразуя каждый элемент
+            const tempsFahrenheit = tempsCelsius.map(celsius => {
+            return celsius * 9/5 + 32;
+            });
+
+            // tempsFahrenheit: [50, 59, 68]
+            </code></pre>
+                    <h3>Пример <code>forEach</code> (Побочный эффект):</h3>
+                    <pre><code>const numbers = [1, 2, 3];
+            let sum = 0; // Внешнее состояние
+
+            // forEach изменяет ВНЕШНЕЕ состояние (sum) и ничего не возвращает
+            numbers.forEach(num => {
+            sum += num; 
+            });
+
+            // sum: 6
+            </code></pre>
+    </div>
+</body>
+</html>

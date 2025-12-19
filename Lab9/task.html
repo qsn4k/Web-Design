@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Асинхронные задачи JS</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        .dashboard { background: white; width: 100%; max-width: 600px; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { color: #333; border-bottom: 2px solid #6366f1; padding-bottom: 10px; }
+        .section { margin-bottom: 30px; padding: 15px; border: 1px solid #e5e7eb; border-radius: 10px; }
+        .btn { background: #6366f1; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-bottom: 10px; }
+        .btn:hover { background: #4f46e5; }
+        .log-box { background: #1a1a1a; color: #10b981; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 14px; max-height: 200px; overflow-y: auto; }
+        .rate-card { display: inline-block; background: #eef2ff; padding: 10px; border-radius: 8px; margin-top: 10px; font-weight: bold; color: #374151; }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <h1>Асинхронная Лабораторная</h1>
+
+    <div class="section">
+        <h3>1. Имитация выполнения задач</h3>
+        <button class="btn" onclick="runSequentialTasks()">Запустить задачи по очереди</button>
+        <div id="taskLog" class="log-box">Ожидание запуска...</div>
+    </div>
+
+    <div class="section">
+        <h3>2. Заголовки постов (JSONPlaceholder)</h3>
+        <button class="btn" onclick="fetchPosts()">Получить заголовки в консоль</button>
+        <p><small>*Результат также выводится в консоль браузера (F12)</small></p>
+        <div id="postsLog" class="log-box">Нажмите кнопку...</div>
+    </div>
+
+    <div class="section">
+        <h3>3. Курс валют Беларусбанка</h3>
+        <button class="btn" onclick="getExchangeRate()">Узнать курс USD</button>
+        <div id="rateDisplay"></div>
+    </div>
+</div>
+
+<script>
+    // --- ЗАДАНИЕ 1: Асинхронные функции по очереди ---
+    function simulateTask(name, delay) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log(`Завершено: ${name}`);
+                resolve(`Задача "${name}" выполнена за ${delay}мс`);
+            }, delay);
+        });
+    }
+
+    async function runSequentialTasks() {
+        const log = document.getElementById('taskLog');
+        log.innerHTML = "Запуск процессов...<br>";
+        
+        // Поочередный запуск через await
+        const res1 = await simulateTask("Загрузка профиля", 1000);
+        log.innerHTML += `> ${res1}<br>`;
+        
+        const res2 = await simulateTask("Синхронизация базы", 1500);
+        log.innerHTML += `> ${res2}<br>`;
+        
+        const res3 = await simulateTask("Очистка кэша", 800);
+        log.innerHTML += `> ${res3}<br>`;
+        
+        log.innerHTML += "<strong>Все задачи завершены!</strong>";
+    }
+
+
+    // --- ЗАДАНИЕ 2: Fetch с публичного API ---
+    async function fetchPosts() {
+        const log = document.getElementById('postsLog');
+        log.innerHTML = "Загрузка заголовков...<br>";
+        try {
+            const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
+            const posts = await response.json();
+            
+            console.log("--- Заголовки постов ---");
+            log.innerHTML = "";
+            posts.forEach((post, index) => {
+                console.log(`${index + 1}. ${post.title}`);
+                log.innerHTML += `${index + 1}. ${post.title}<br>`;
+            });
+        } catch (error) {
+            console.error("Ошибка при получении постов:", error);
+        }
+    }
+
+
+    // --- ЗАДАНИЕ 3: Fetch курса валют Беларусбанка ---
+    async function getExchangeRate() {
+        const display = document.getElementById('rateDisplay');
+        display.innerHTML = "Запрос к банку...";
+        
+        try {
+            // Используем CORS прокси для доступа к API банка из браузера
+            const url = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://belarusbank.by/open-banking/v1.0/banks/AKBBBY2X/exchange');
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            // Парсим данные (Беларусбанк отдает массив отделений с курсами)
+            const rates = JSON.parse(data.contents);
+            const firstBranch = rates[0]; // Берем данные первого попавшегося отделения
+            
+            display.innerHTML = `
+                <div class="rate-card">
+                    USD Покупка: ${firstBranch.USD_in} | Продажа: ${firstBranch.USD_out}<br>
+                    <small>Филиал: ${firstBranch.filials_text}</small>
+                </div>
+            `;
+        } catch (error) {
+            display.innerHTML = "<span style='color:red'>Ошибка CORS или сети. Подробности в консоли.</span>";
+            console.error("Ошибка API банка:", error);
+        }
+    }
+</script>
+
+</body>
+</html>
